@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biospace Smart Search</title>
+<style>
+body {
+  background-color: #0b0b0b;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+input {
+  width: 60%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  margin-right: 10px;
+}
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  background-color: #00cfff;
+  color: #000;
+  cursor: pointer;
+  font-weight: bold;
+}
+.result {
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 15px;
+  background: rgba(255,255,255,0.05);
+}
+.result h3 { color: #00cfff; margin-bottom: 5px; }
+.result p { color: #ccc; }
+.result a { color: orange; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<h1>🔍 BioSpace Smart Search</h1>
+<input type="text" id="search-input" placeholder="Enter keyword (e.g., biomining)">
+<button id="search-btn">Search</button>
+
+<div id="results"></div>
+
+<script>
+let dataset = [];
+
+// Load JSON
+fetch("nasa_biospace_enriched.json")
+  .then(r => r.json())
+  .then(data => {
+    dataset = data;
+    console.log("✅ Dataset loaded:", dataset.length, "records");
+  })
+  .catch(err => console.error("❌ JSON Load Error:", err));
+
+function flattenObject(obj) {
+  return Object.values(obj).map(v => {
+    if (Array.isArray(v)) return v.join(" ");
+    if (typeof v === "object" && v !== null) return flattenObject(v);
+    return v;
+  }).join(" ").toLowerCase();
+}
+
+function showResults(results) {
+  const div = document.getElementById("results");
+  div.innerHTML = "";
+  if (results.length === 0) return div.innerHTML = "<p>No results found.</p>";
+
+  results.sort((a, b) => (b.Year || 0) - (a.Year || 0));
+
+  results.forEach(p => {
+    div.innerHTML += `
+      <div class="result">
+        <h3>${p.Title || p.title || "Untitled"}</h3>
+        <p><strong>Year:</strong> ${p.Year || p.year || "Unknown"}</p>
+        <p>${(p.Abstract || p.abstract || "").substring(0,300)}...</p>
+        <p><strong>Keywords:</strong> ${(p.Keywords || p.keywords || []).join(", ")}</p>
+        ${p.Link ? `<p><a href="${p.Link}" target="_blank">🔗 View Paper</a></p>` : ""}
+      </div>`;
+  });
+}
+
+document.getElementById("search-btn").addEventListener("click", () => {
+  const query = document.getElementById("search-input").value.toLowerCase().trim();
+  console.log("🔎 Searching for:", query);
+  if (!dataset.length) return alert("Dataset not loaded yet!");
+
+  const results = dataset.filter(p => flattenObject(p).includes(query));
+  console.log("✅ Found:", results.length, "results");
+  showResults(results);
+});
+</script>
+
+</body>
+</html>
