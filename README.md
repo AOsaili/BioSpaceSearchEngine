@@ -1,11 +1,11 @@
-# 🌌 BioSpace Search Engine
+# BioSpace Search Engine
 
 An interactive web dashboard that helps researchers, managers, and mission architects explore NASA’s bioscience publications more efficiently.  
 The system integrates NASA-provided datasets with machine learning–powered summaries, offering role-specific insights and an intuitive search interface.
 
 ---
 
-## 📖 Project Summary
+## Project Summary
 We developed an intelligent platform to make NASA’s **Biological and Physical Sciences Data** easier to search, analyze, and understand.  
 Our pipeline fetches and enriches data from PubMed Central (PMC) and NASA APIs, processes it with data analytics and LLM-based summarization, and presents the results in a responsive web interface.  
 
@@ -17,16 +17,16 @@ This project directly addresses the challenge of **unlocking NASA’s bioscience
 
 ---
 
-## 🛠️ Features
-- 🔍 **Search Engine**: Full-text search across titles, abstracts, keywords.  
-- 📊 **Data Pipeline**: Automated fetching from PubMed Central & NASA sources.  
-- 🤖 **Role-based Summaries**: Scientist / Manager / Mission Architect tailored abstracts.  
-- 🖥️ **Interactive UI**: Built with HTML/CSS/JS for fast exploration.  
-- 📜 **Timeline View**: Results are displayed chronologically for context.  
+## Features
+-  **Search Engine**: Full-text search across titles, abstracts, keywords.  
+-  **Data Pipeline**: Automated fetching from PubMed Central & NASA sources.  
+-  **Role-based Summaries**: Scientist / Manager / Mission Architect tailored abstracts.  
+-  **Interactive UI**: Built with HTML/CSS/JS for fast exploration.  
+-  **Timeline View**: Results are displayed chronologically for context.  
 
 ---
 
-## ⚙️ How It Works
+##  How It Works
 1. **Data Collection**: Fetch publications from NASA datasets and PMC.  
 2. **Preprocessing**: Extract metadata (titles, abstracts, authors, dates).  
 3. **LLM Summaries**: Generate role-based summaries.  
@@ -34,4 +34,4 @@ This project directly addresses the challenge of **unlocking NASA’s bioscience
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
