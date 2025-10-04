@@ -5,6 +5,12 @@ The system integrates NASA-provided datasets with machine learning–powered sum
 
 ---
 
+## How to Start The App
+
+Run "python starter.py", then go to http://localhost:8000/index.html
+
+---
+
 ## Project Summary
 We developed an intelligent platform to make NASA’s **Biological and Physical Sciences Data** easier to search, analyze, and understand.  
 Our pipeline fetches and enriches data from PubMed Central (PMC) and NASA APIs, processes it with data analytics and LLM-based summarization, and presents the results in a responsive web interface.  
